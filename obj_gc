@@ -1,31 +1,36 @@
 import java.util.*;
-
 class staticobject {
     static int count = 0;
+
     public static void main(String[] args) {
         int python, java;
         System.out.println("Enter the number of students in Python, Java");
         Scanner sc = new Scanner(System.in);
         python = sc.nextInt();
         java = sc.nextInt();
+        
         staticobject py[] = new staticobject[python];
         staticobject jv[] = new staticobject[java];
+        
         if(python > 30) {
             for(int i=30; i<python; i++) {
                 py[i] = null;
                 staticobject.count++;
                 System.gc();
             }
+            System.out.println("Python objects destroyed: " + staticobject.count);
         }
 
         if(java > 30) {
+            int num = staticobject.count;
             for(int i=30; i<java; i++) {
                 jv[i] = null;
                 staticobject.count++;
                 System.gc();
             }
+            System.out.println("Java objects destroyed: " + (staticobject.count - num));
         }
-
+        
         System.out.println(count + " objects destroyed");
     }
 }
